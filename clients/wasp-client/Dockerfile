@@ -1,5 +1,5 @@
 # Stage 1: Build evmemulator from source
-FROM golang:1.23 AS evmbuilder
+FROM golang:1.24 AS evmbuilder
 
 WORKDIR /src
 RUN git clone --depth=1 --branch emulator https://github.com/howjmay/wasp.git waspclone
