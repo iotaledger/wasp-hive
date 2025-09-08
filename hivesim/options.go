@@ -4,7 +4,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/ethereum/hive/internal/simapi"
+	"github.com/iotaledger/wasp-hive/internal/simapi"
 )
 
 // clientSetup collects client options.

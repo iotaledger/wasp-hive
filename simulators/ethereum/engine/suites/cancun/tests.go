@@ -6,13 +6,13 @@ import (
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/hive/simulators/ethereum/engine/client/hive_rpc"
-	"github.com/ethereum/hive/simulators/ethereum/engine/config"
-	"github.com/ethereum/hive/simulators/ethereum/engine/config/cancun"
-	"github.com/ethereum/hive/simulators/ethereum/engine/globals"
-	"github.com/ethereum/hive/simulators/ethereum/engine/helper"
-	suite_engine "github.com/ethereum/hive/simulators/ethereum/engine/suites/engine"
-	"github.com/ethereum/hive/simulators/ethereum/engine/test"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/client/hive_rpc"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/config"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/config/cancun"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/globals"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/helper"
+	suite_engine "github.com/iotaledger/wasp-hive/simulators/ethereum/engine/suites/engine"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/test"
 )
 
 // Precalculate the first data gas cost increase

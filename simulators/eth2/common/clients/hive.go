@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/ethereum/hive/hivesim"
+	"github.com/iotaledger/wasp-hive/hivesim"
 	"github.com/marioevz/eth-clients/clients"
 )
 

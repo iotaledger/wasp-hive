@@ -5,10 +5,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ethereum/hive/simulators/ethereum/engine/clmock"
-	"github.com/ethereum/hive/simulators/ethereum/engine/config"
-	"github.com/ethereum/hive/simulators/ethereum/engine/devp2p"
-	"github.com/ethereum/hive/simulators/ethereum/engine/test"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/clmock"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/config"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/devp2p"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/test"
 )
 
 type ForkIDSpec struct {

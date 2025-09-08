@@ -6,7 +6,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "github.com/ethereum/hive"
+    "url": "github.com/iotaledger/wasp-hive"
   },
   "license": "GPLv3"
 }

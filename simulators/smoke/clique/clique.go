@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/ethereum/hive/hivesim"
+	"github.com/iotaledger/wasp-hive/hivesim"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package helper_test
 import (
 	"testing"
 
-	"github.com/ethereum/hive/simulators/ethereum/engine/helper"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/helper"
 )
 
 func TestBlobGeneration(t *testing.T) {

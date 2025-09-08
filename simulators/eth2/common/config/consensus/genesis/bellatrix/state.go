@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/hive/simulators/eth2/common/config/consensus/genesis/interfaces"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/config/consensus/genesis/interfaces"
 	"github.com/holiman/uint256"
 	"github.com/protolambda/zrnt/eth2/beacon/bellatrix"
 	"github.com/protolambda/zrnt/eth2/beacon/common"

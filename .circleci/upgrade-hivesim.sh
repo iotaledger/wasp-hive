@@ -12,7 +12,7 @@ for d in $sims; do
     (
         set -e
         cd $d
-        go get -d "github.com/ethereum/hive@$version"
+        go get -d "github.com/iotaledger/wasp-hive@$version"
         go mod tidy -compat=1.21
     )
 done

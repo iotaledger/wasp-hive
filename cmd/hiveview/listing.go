@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ethereum/hive/internal/libhive"
+	"github.com/iotaledger/wasp-hive/internal/libhive"
 )
 
 // generateListing processes hive simulation output files and generates a listing file.

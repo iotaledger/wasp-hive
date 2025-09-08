@@ -16,8 +16,8 @@ import (
 	gokzg4844 "github.com/crate-crypto/go-kzg-4844"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/hive/simulators/ethereum/engine/globals"
-	typ "github.com/ethereum/hive/simulators/ethereum/engine/types"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/globals"
+	typ "github.com/iotaledger/wasp-hive/simulators/ethereum/engine/types"
 )
 
 var gCryptoCtx gokzg4844.Context
@@ -215,7 +215,7 @@ func GetPrecomputedKZG(blobId BlobID) (*typ.KZGCommitment, *typ.KZGProof) {
 
 }
 
-//go:generate go run github.com/ethereum/hive/simulators/ethereum/engine/helper/kzg_precomputer 10000
+//go:generate go run github.com/iotaledger/wasp-hive/simulators/ethereum/engine/helper/kzg_precomputer 10000
 func (blobId BlobID) GenerateBlob() (*typ.Blob, *typ.KZGCommitment, *typ.KZGProof, error) {
 	blob := typ.Blob{}
 	if err := blobId.FillBlob(&blob); err != nil {

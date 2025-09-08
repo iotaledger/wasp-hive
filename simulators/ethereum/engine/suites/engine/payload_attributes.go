@@ -3,11 +3,11 @@ package suite_engine
 import (
 	"fmt"
 
-	"github.com/ethereum/hive/simulators/ethereum/engine/clmock"
-	"github.com/ethereum/hive/simulators/ethereum/engine/config"
-	"github.com/ethereum/hive/simulators/ethereum/engine/globals"
-	"github.com/ethereum/hive/simulators/ethereum/engine/helper"
-	"github.com/ethereum/hive/simulators/ethereum/engine/test"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/clmock"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/config"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/globals"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/helper"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/test"
 )
 
 type InvalidPayloadAttributesTest struct {

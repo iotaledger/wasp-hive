@@ -15,7 +15,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ethereum/hive/internal/simapi"
+	"github.com/iotaledger/wasp-hive/internal/simapi"
 	"github.com/gorilla/mux"
 )
 

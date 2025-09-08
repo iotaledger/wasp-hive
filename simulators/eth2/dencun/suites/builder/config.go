@@ -3,10 +3,10 @@ package suite_builder
 import (
 	"math/big"
 
-	"github.com/ethereum/hive/simulators/eth2/common/clients"
-	"github.com/ethereum/hive/simulators/eth2/common/testnet"
-	"github.com/ethereum/hive/simulators/eth2/common/utils"
-	suite_base "github.com/ethereum/hive/simulators/eth2/dencun/suites/base"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/clients"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/testnet"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/utils"
+	suite_base "github.com/iotaledger/wasp-hive/simulators/eth2/dencun/suites/base"
 	mock_builder "github.com/marioevz/mock-builder/mock"
 	beacon "github.com/protolambda/zrnt/eth2/beacon/common"
 )

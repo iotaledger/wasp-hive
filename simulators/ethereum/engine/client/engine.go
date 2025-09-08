@@ -6,11 +6,11 @@ import (
 
 	api "github.com/ethereum/go-ethereum/beacon/engine"
 	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/hive/hivesim"
+	"github.com/iotaledger/wasp-hive/hivesim"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
-	typ "github.com/ethereum/hive/simulators/ethereum/engine/types"
+	typ "github.com/iotaledger/wasp-hive/simulators/ethereum/engine/types"
 )
 
 type Eth interface {

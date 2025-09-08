@@ -4,12 +4,12 @@ import (
 	"context"
 	"math/big"
 
-	"github.com/ethereum/hive/hivesim"
-	"github.com/ethereum/hive/simulators/eth2/common/clients"
-	"github.com/ethereum/hive/simulators/eth2/common/config"
-	consensus_config "github.com/ethereum/hive/simulators/eth2/common/config/consensus"
-	el "github.com/ethereum/hive/simulators/eth2/common/config/execution"
-	tn "github.com/ethereum/hive/simulators/eth2/common/testnet"
+	"github.com/iotaledger/wasp-hive/hivesim"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/clients"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/config"
+	consensus_config "github.com/iotaledger/wasp-hive/simulators/eth2/common/config/consensus"
+	el "github.com/iotaledger/wasp-hive/simulators/eth2/common/config/execution"
+	tn "github.com/iotaledger/wasp-hive/simulators/eth2/common/testnet"
 )
 
 var (

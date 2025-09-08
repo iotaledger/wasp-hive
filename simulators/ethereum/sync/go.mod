@@ -1,4 +1,4 @@
-module github.com/ethereum/hive/simulators/ethereum/sync
+module github.com/iotaledger/wasp-hive/simulators/ethereum/sync
 
 go 1.21
 
@@ -6,7 +6,7 @@ toolchain go1.22.1
 
 require (
 	github.com/ethereum/go-ethereum v1.14.5
-	github.com/ethereum/hive v0.0.0-20240715150147-c87a99dccfce
+	github.com/iotaledger/wasp-hive v0.0.0-20240715150147-c87a99dccfce
 )
 
 require (

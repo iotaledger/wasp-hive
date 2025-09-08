@@ -8,7 +8,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/ethereum/hive/hivesim"
+	"github.com/iotaledger/wasp-hive/hivesim"
 	"github.com/shogo82148/go-tap"
 )
 

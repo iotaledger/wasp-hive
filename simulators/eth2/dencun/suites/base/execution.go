@@ -5,13 +5,13 @@ import (
 	"time"
 
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/hive/hivesim"
+	"github.com/iotaledger/wasp-hive/hivesim"
 
-	beacon_verification "github.com/ethereum/hive/simulators/eth2/common/spoofing/beacon"
-	tn "github.com/ethereum/hive/simulators/eth2/common/testnet"
-	"github.com/ethereum/hive/simulators/eth2/common/utils"
-	"github.com/ethereum/hive/simulators/ethereum/engine/globals"
-	engine_helper "github.com/ethereum/hive/simulators/ethereum/engine/helper"
+	beacon_verification "github.com/iotaledger/wasp-hive/simulators/eth2/common/spoofing/beacon"
+	tn "github.com/iotaledger/wasp-hive/simulators/eth2/common/testnet"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/utils"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/globals"
+	engine_helper "github.com/iotaledger/wasp-hive/simulators/ethereum/engine/helper"
 	"github.com/protolambda/eth2api"
 	beacon "github.com/protolambda/zrnt/eth2/beacon/common"
 )

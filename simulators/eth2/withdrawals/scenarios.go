@@ -7,12 +7,12 @@ import (
 	"time"
 
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/hive/hivesim"
-	"github.com/ethereum/hive/simulators/eth2/common/clients"
+	"github.com/iotaledger/wasp-hive/hivesim"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/clients"
 	mock_builder "github.com/marioevz/mock-builder/mock"
 
-	beacon_verification "github.com/ethereum/hive/simulators/eth2/common/spoofing/beacon"
-	tn "github.com/ethereum/hive/simulators/eth2/common/testnet"
+	beacon_verification "github.com/iotaledger/wasp-hive/simulators/eth2/common/spoofing/beacon"
+	tn "github.com/iotaledger/wasp-hive/simulators/eth2/common/testnet"
 	beacon_client "github.com/marioevz/eth-clients/clients/beacon"
 	"github.com/protolambda/eth2api"
 	beacon "github.com/protolambda/zrnt/eth2/beacon/common"

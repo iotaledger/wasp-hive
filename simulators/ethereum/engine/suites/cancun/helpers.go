@@ -10,10 +10,10 @@ import (
 	"sync"
 
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/hive/simulators/ethereum/engine/client"
-	"github.com/ethereum/hive/simulators/ethereum/engine/config/cancun"
-	"github.com/ethereum/hive/simulators/ethereum/engine/helper"
-	typ "github.com/ethereum/hive/simulators/ethereum/engine/types"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/client"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/config/cancun"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/helper"
+	typ "github.com/iotaledger/wasp-hive/simulators/ethereum/engine/types"
 )
 
 func FakeExponential(factor, numerator, denominator uint64) uint64 {

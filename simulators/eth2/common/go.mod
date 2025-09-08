@@ -1,4 +1,4 @@
-module github.com/ethereum/hive/simulators/eth2/common
+module github.com/iotaledger/wasp-hive/simulators/eth2/common
 
 go 1.21
 
@@ -6,8 +6,8 @@ toolchain go1.22.0
 
 require (
 	github.com/ethereum/go-ethereum v1.14.5
-	github.com/ethereum/hive v0.0.0-20240715150147-c87a99dccfce
-	github.com/ethereum/hive/simulators/ethereum/engine v0.0.0-20240610181627-c741e58c51e2
+	github.com/iotaledger/wasp-hive v0.0.0-20240715150147-c87a99dccfce
+	github.com/iotaledger/wasp-hive/simulators/ethereum/engine v0.0.0-20240610181627-c741e58c51e2
 	github.com/google/uuid v1.6.0
 	github.com/herumi/bls-eth-go-binary v1.29.1
 	github.com/holiman/uint256 v1.2.4

@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"context"
 
-	"github.com/ethereum/hive/hivesim"
+	"github.com/iotaledger/wasp-hive/hivesim"
 
-	tn "github.com/ethereum/hive/simulators/eth2/common/testnet"
+	tn "github.com/iotaledger/wasp-hive/simulators/eth2/common/testnet"
 	blobber_common "github.com/marioevz/blobber/common"
 	"github.com/protolambda/eth2api"
 	"github.com/protolambda/zrnt/eth2/beacon/common"

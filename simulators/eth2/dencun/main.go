@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/ethereum/hive/hivesim"
-	"github.com/ethereum/hive/simulators/eth2/common/clients"
-	suite_base "github.com/ethereum/hive/simulators/eth2/dencun/suites/base"
-	suite_builder "github.com/ethereum/hive/simulators/eth2/dencun/suites/builder"
-	suite_blobs_gossip "github.com/ethereum/hive/simulators/eth2/dencun/suites/p2p/gossip/blobs"
-	suite_reorg "github.com/ethereum/hive/simulators/eth2/dencun/suites/reorg"
-	suite_sync "github.com/ethereum/hive/simulators/eth2/dencun/suites/sync"
+	"github.com/iotaledger/wasp-hive/hivesim"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/clients"
+	suite_base "github.com/iotaledger/wasp-hive/simulators/eth2/dencun/suites/base"
+	suite_builder "github.com/iotaledger/wasp-hive/simulators/eth2/dencun/suites/builder"
+	suite_blobs_gossip "github.com/iotaledger/wasp-hive/simulators/eth2/dencun/suites/p2p/gossip/blobs"
+	suite_reorg "github.com/iotaledger/wasp-hive/simulators/eth2/dencun/suites/reorg"
+	suite_sync "github.com/iotaledger/wasp-hive/simulators/eth2/dencun/suites/sync"
 )
 
 func main() {

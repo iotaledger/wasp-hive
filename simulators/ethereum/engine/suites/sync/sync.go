@@ -7,8 +7,8 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/hive/hivesim"
-	"github.com/ethereum/hive/simulators/ethereum/engine/helper"
+	"github.com/iotaledger/wasp-hive/hivesim"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/helper"
 )
 
 // Specifies a single test variant for the given client:

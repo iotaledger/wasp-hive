@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/ethereum/hive/hivesim"
-	"github.com/ethereum/hive/simulators/eth2/common/clients"
-	cl "github.com/ethereum/hive/simulators/eth2/common/config/consensus"
-	"github.com/ethereum/hive/simulators/eth2/common/testnet"
+	"github.com/iotaledger/wasp-hive/hivesim"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/clients"
+	cl "github.com/iotaledger/wasp-hive/simulators/eth2/common/config/consensus"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/testnet"
 )
 
 type testSpec struct {

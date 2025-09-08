@@ -1,11 +1,11 @@
-module github.com/ethereum/hive/simulators/devp2p
+module github.com/iotaledger/wasp-hive/simulators/devp2p
 
 go 1.21
 
 toolchain go1.22.1
 
 require (
-	github.com/ethereum/hive v0.0.0-20240715150147-c87a99dccfce
+	github.com/iotaledger/wasp-hive v0.0.0-20240715150147-c87a99dccfce
 	github.com/shogo82148/go-tap v0.0.3
 )
 

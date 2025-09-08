@@ -1,4 +1,4 @@
-module github.com/ethereum/hive/simulators/eth2/dencun
+module github.com/iotaledger/wasp-hive/simulators/eth2/dencun
 
 go 1.21
 
@@ -6,9 +6,9 @@ toolchain go1.22.0
 
 require (
 	github.com/ethereum/go-ethereum v1.14.5
-	github.com/ethereum/hive v0.0.0-20240715150147-c87a99dccfce
-	github.com/ethereum/hive/simulators/eth2/common v0.0.0-20230316220410-1364352c32a6
-	github.com/ethereum/hive/simulators/ethereum/engine v0.0.0-20240305231022-f69df863de20
+	github.com/iotaledger/wasp-hive v0.0.0-20240715150147-c87a99dccfce
+	github.com/iotaledger/wasp-hive/simulators/eth2/common v0.0.0-20230316220410-1364352c32a6
+	github.com/iotaledger/wasp-hive/simulators/ethereum/engine v0.0.0-20240305231022-f69df863de20
 	github.com/lithammer/dedent v1.1.0
 	github.com/marioevz/blobber v1.1.1-0.20240306221924-a7e22e59ea34
 	github.com/marioevz/mock-builder v1.2.1-0.20240312201838-ad9ba388e88b

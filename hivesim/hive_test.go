@@ -11,9 +11,9 @@ import (
 	"testing"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/ethereum/hive/internal/fakes"
-	"github.com/ethereum/hive/internal/libhive"
-	"github.com/ethereum/hive/internal/simapi"
+	"github.com/iotaledger/wasp-hive/internal/fakes"
+	"github.com/iotaledger/wasp-hive/internal/libhive"
+	"github.com/iotaledger/wasp-hive/internal/simapi"
 )
 
 // This test checks that the API returns configured client names correctly.

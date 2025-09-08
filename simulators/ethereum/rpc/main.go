@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/hive/hivesim"
+	"github.com/iotaledger/wasp-hive/hivesim"
 )
 
 var (

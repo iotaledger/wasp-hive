@@ -26,8 +26,8 @@ import (
 	"github.com/ethereum/go-ethereum/p2p"
 	"github.com/ethereum/go-ethereum/p2p/enode"
 	"github.com/ethereum/go-ethereum/p2p/rlpx"
-	"github.com/ethereum/hive/simulators/ethereum/engine/client"
-	"github.com/ethereum/hive/simulators/ethereum/engine/clmock"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/client"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/clmock"
 )
 
 var (

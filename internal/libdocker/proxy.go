@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/ethereum/hive/hiveproxy"
-	"github.com/ethereum/hive/internal/libhive"
+	"github.com/iotaledger/wasp-hive/hiveproxy"
+	"github.com/iotaledger/wasp-hive/internal/libhive"
 )
 
 const hiveproxyTag = "hive/hiveproxy"

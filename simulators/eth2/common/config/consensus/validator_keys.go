@@ -10,9 +10,9 @@ import (
 
 	blsu "github.com/protolambda/bls12-381-util"
 
-	"github.com/ethereum/hive/hivesim"
-	"github.com/ethereum/hive/simulators/eth2/common/config"
-	"github.com/ethereum/hive/simulators/eth2/common/config/consensus/genesis/interfaces"
+	"github.com/iotaledger/wasp-hive/hivesim"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/config"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/config/consensus/genesis/interfaces"
 	"github.com/google/uuid"
 	hbls "github.com/herumi/bls-eth-go-binary/bls"
 	"github.com/marioevz/eth-clients/clients/validator"

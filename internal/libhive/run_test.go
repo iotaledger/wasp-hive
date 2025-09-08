@@ -9,9 +9,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ethereum/hive/hivesim"
-	"github.com/ethereum/hive/internal/fakes"
-	"github.com/ethereum/hive/internal/libhive"
+	"github.com/iotaledger/wasp-hive/hivesim"
+	"github.com/iotaledger/wasp-hive/internal/fakes"
+	"github.com/iotaledger/wasp-hive/internal/libhive"
 )
 
 func TestRunner(t *testing.T) {

@@ -11,10 +11,10 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/trie"
-	"github.com/ethereum/hive/simulators/ethereum/engine/client"
-	"github.com/ethereum/hive/simulators/ethereum/engine/config/cancun"
-	"github.com/ethereum/hive/simulators/ethereum/engine/globals"
-	typ "github.com/ethereum/hive/simulators/ethereum/engine/types"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/client"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/config/cancun"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/globals"
+	typ "github.com/iotaledger/wasp-hive/simulators/ethereum/engine/types"
 )
 
 type EngineAPIVersionResolver interface {

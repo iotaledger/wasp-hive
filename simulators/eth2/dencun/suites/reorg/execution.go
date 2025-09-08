@@ -3,8 +3,8 @@ package suite_reorg
 import (
 	"context"
 
-	"github.com/ethereum/hive/hivesim"
-	tn "github.com/ethereum/hive/simulators/eth2/common/testnet"
+	"github.com/iotaledger/wasp-hive/hivesim"
+	tn "github.com/iotaledger/wasp-hive/simulators/eth2/common/testnet"
 )
 
 // Re-org testnet.

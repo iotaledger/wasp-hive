@@ -4,9 +4,9 @@ import (
 	"fmt"
 
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/hive/simulators/ethereum/engine/clmock"
-	"github.com/ethereum/hive/simulators/ethereum/engine/config"
-	"github.com/ethereum/hive/simulators/ethereum/engine/test"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/clmock"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/config"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/test"
 )
 
 type PayloadAttributesFieldChange string

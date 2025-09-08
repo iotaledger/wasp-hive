@@ -5,9 +5,9 @@ import (
 	"time"
 
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/hive/hivesim"
-	"github.com/ethereum/hive/simulators/ethereum/engine/globals"
-	"github.com/ethereum/hive/simulators/ethereum/engine/helper"
+	"github.com/iotaledger/wasp-hive/hivesim"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/globals"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/helper"
 	exec_client "github.com/marioevz/eth-clients/clients/execution"
 )
 

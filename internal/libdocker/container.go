@@ -16,8 +16,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/hive/hiveproxy"
-	"github.com/ethereum/hive/internal/libhive"
+	"github.com/iotaledger/wasp-hive/hiveproxy"
+	"github.com/iotaledger/wasp-hive/internal/libhive"
 	docker "github.com/fsouza/go-dockerclient"
 )
 

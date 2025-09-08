@@ -4,7 +4,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/ethereum/hive/simulators/eth2/common/config"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/config"
 )
 
 func TestBuildChainConfig(t *testing.T) {

@@ -5,7 +5,7 @@ import (
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/hive/simulators/ethereum/engine/config/cancun"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/config/cancun"
 )
 
 func (f *ForkConfig) ConfigGenesis(genesis *core.Genesis) error {

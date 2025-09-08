@@ -13,7 +13,7 @@ chrono = "0.4"
 ethereum_ssz = "0.9"
 ethportal-api = { git = "https://github.com/ethereum/trin", rev = "fd0b3c19c20c68059370a51d9b433ed34daa0591" }
 futures = "0.3.25"
-hivesim = { git = "https://github.com/ethereum/hive", rev = "4408fc1de3fee3ac23acd25a812c117756af2f39" }
+hivesim = { git = "https://github.com/iotaledger/wasp-hive", rev = "4408fc1de3fee3ac23acd25a812c117756af2f39" }
 itertools = "0.14"
 lazy_static = "1.4.0"
 reqwest = { version = "0.12.7", features = ["json"] }

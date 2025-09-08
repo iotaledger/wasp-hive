@@ -29,7 +29,7 @@ import (
 	"github.com/ethereum/go-ethereum/p2p"
 	"github.com/ethereum/go-ethereum/p2p/rlpx"
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/hive/simulators/ethereum/engine/clmock"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/clmock"
 )
 
 type Message interface {

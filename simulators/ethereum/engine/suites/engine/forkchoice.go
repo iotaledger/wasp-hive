@@ -5,12 +5,12 @@ import (
 
 	api "github.com/ethereum/go-ethereum/beacon/engine"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/hive/simulators/ethereum/engine/clmock"
-	"github.com/ethereum/hive/simulators/ethereum/engine/config"
-	"github.com/ethereum/hive/simulators/ethereum/engine/globals"
-	"github.com/ethereum/hive/simulators/ethereum/engine/helper"
-	"github.com/ethereum/hive/simulators/ethereum/engine/test"
-	typ "github.com/ethereum/hive/simulators/ethereum/engine/types"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/clmock"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/config"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/globals"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/helper"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/test"
+	typ "github.com/iotaledger/wasp-hive/simulators/ethereum/engine/types"
 )
 
 type ForkchoiceStateField string

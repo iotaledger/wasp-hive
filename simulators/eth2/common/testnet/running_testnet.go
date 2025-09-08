@@ -22,9 +22,9 @@ import (
 	"github.com/protolambda/zrnt/eth2/util/math"
 	"github.com/protolambda/ztyp/tree"
 
-	"github.com/ethereum/hive/hivesim"
-	execution_config "github.com/ethereum/hive/simulators/eth2/common/config/execution"
-	"github.com/ethereum/hive/simulators/eth2/common/utils"
+	"github.com/iotaledger/wasp-hive/hivesim"
+	execution_config "github.com/iotaledger/wasp-hive/simulators/eth2/common/config/execution"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/utils"
 	"github.com/marioevz/blobber"
 	blobber_config "github.com/marioevz/blobber/config"
 	"github.com/marioevz/blobber/keys"

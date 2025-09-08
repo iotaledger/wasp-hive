@@ -9,7 +9,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/ethereum/hive/internal/simapi"
+	"github.com/iotaledger/wasp-hive/internal/simapi"
 	"github.com/lithammer/dedent"
 )
 

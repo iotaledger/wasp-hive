@@ -1,4 +1,4 @@
-module github.com/ethereum/hive/hiveproxy
+module github.com/iotaledger/wasp-hive/hiveproxy
 
 go 1.21
 

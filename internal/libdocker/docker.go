@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"regexp"
 
-	"github.com/ethereum/hive/internal/libhive"
+	"github.com/iotaledger/wasp-hive/internal/libhive"
 	docker "github.com/fsouza/go-dockerclient"
 )
 

@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/hive/simulators/ethereum/engine/test"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/test"
 )
 
 // Contains the base spec for all cancun tests.

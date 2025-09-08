@@ -1,6 +1,6 @@
 package clients
 
-import "github.com/ethereum/hive/hivesim"
+import "github.com/iotaledger/wasp-hive/hivesim"
 
 type ClientDefinitionsByRole struct {
 	Beacon    []*hivesim.ClientDefinition `json:"beacon"`

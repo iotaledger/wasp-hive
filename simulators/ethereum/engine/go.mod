@@ -1,4 +1,4 @@
-module github.com/ethereum/hive/simulators/ethereum/engine
+module github.com/iotaledger/wasp-hive/simulators/ethereum/engine
 
 go 1.22
 
@@ -8,7 +8,7 @@ require (
 	github.com/crate-crypto/go-kzg-4844 v1.0.0
 	github.com/davecgh/go-spew v1.1.1
 	github.com/ethereum/go-ethereum v1.14.12
-	github.com/ethereum/hive v0.0.0-20240715150147-c87a99dccfce
+	github.com/iotaledger/wasp-hive v0.0.0-20240715150147-c87a99dccfce
 	github.com/golang-jwt/jwt/v4 v4.5.1
 	github.com/holiman/uint256 v1.3.1
 	github.com/pkg/errors v0.9.1

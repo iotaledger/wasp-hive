@@ -6,9 +6,9 @@ import (
 	"math/big"
 
 	el_common "github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/hive/hivesim"
-	"github.com/ethereum/hive/simulators/eth2/common/config"
-	execution_config "github.com/ethereum/hive/simulators/eth2/common/config/execution"
+	"github.com/iotaledger/wasp-hive/hivesim"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/config"
+	execution_config "github.com/iotaledger/wasp-hive/simulators/eth2/common/config/execution"
 	"github.com/holiman/uint256"
 	"github.com/protolambda/zrnt/eth2/beacon/common"
 	"github.com/protolambda/ztyp/codec"

@@ -1995,7 +1995,7 @@ dependencies = [
 [[package]]
 name = "hivesim"
 version = "0.1.0-alpha.1"
-source = "git+https://github.com/ethereum/hive?rev=4408fc1de3fee3ac23acd25a812c117756af2f39#4408fc1de3fee3ac23acd25a812c117756af2f39"
+source = "git+https://github.com/iotaledger/wasp-hive?rev=4408fc1de3fee3ac23acd25a812c117756af2f39#4408fc1de3fee3ac23acd25a812c117756af2f39"
 dependencies = [
  "async-trait",
  "dyn-clone",

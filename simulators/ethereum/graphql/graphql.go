@@ -15,7 +15,7 @@ import (
 	"sync"
 
 	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/hive/hivesim"
+	"github.com/iotaledger/wasp-hive/hivesim"
 )
 
 func main() {
@@ -65,7 +65,7 @@ func graphqlTest(t *hivesim.T, c *hivesim.Client) {
 		go func() {
 			defer wg.Done()
 			for test := range testCh {
-				url := "https://github.com/ethereum/hive/blob/master/simulators/ethereum/graphql/testcases"
+				url := "https://github.com/iotaledger/wasp-hive/blob/master/simulators/ethereum/graphql/testcases"
 				t.Run(hivesim.TestSpec{
 					Name:        fmt.Sprintf("%s (%s)", test.name, c.Type),
 					Description: fmt.Sprintf("Test case source: %s/%v.json", url, test.name),

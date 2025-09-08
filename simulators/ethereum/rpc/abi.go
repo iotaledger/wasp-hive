@@ -14,7 +14,7 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/hive/simulators/ethereum/rpc/testcontract"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/rpc/testcontract"
 )
 
 //go:generate abigen -abi ./contractABI.json -pkg testcontract -type Contract -out ./testcontract/contract.go

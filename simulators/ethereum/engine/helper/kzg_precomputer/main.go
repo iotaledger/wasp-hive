@@ -4,7 +4,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/ethereum/hive/simulators/ethereum/engine/helper"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/helper"
 )
 
 func main() {

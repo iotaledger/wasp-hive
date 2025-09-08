@@ -1,9 +1,9 @@
 package suite_base
 
 import (
-	"github.com/ethereum/hive/hivesim"
-	"github.com/ethereum/hive/simulators/eth2/common/clients"
-	"github.com/ethereum/hive/simulators/eth2/dencun/suites"
+	"github.com/iotaledger/wasp-hive/hivesim"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/clients"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/dencun/suites"
 )
 
 var testSuite = hivesim.Suite{

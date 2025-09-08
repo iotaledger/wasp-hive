@@ -29,9 +29,9 @@ import (
 	"github.com/ethereum/go-ethereum/p2p/enode"
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/ethereum/hive/hivesim"
-	"github.com/ethereum/hive/simulators/ethereum/engine/client"
-	typ "github.com/ethereum/hive/simulators/ethereum/engine/types"
+	"github.com/iotaledger/wasp-hive/hivesim"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/client"
+	typ "github.com/iotaledger/wasp-hive/simulators/ethereum/engine/types"
 	"github.com/pkg/errors"
 )
 

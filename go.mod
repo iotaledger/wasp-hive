@@ -7,13 +7,12 @@ toolchain go1.23.5
 require (
 	github.com/davecgh/go-spew v1.1.1
 	github.com/ethereum/go-ethereum v1.16.2
-	github.com/ethereum/hive v0.0.0-20250829213753-76400854dbca
-	github.com/ethereum/hive/hiveproxy v0.0.0-20240610172618-786a798a0cfe
 	github.com/evanw/esbuild v0.18.11
 	github.com/fsouza/go-dockerclient v1.11.2
 	github.com/golang-jwt/jwt/v4 v4.5.1
 	github.com/gorilla/mux v1.8.1
 	github.com/holiman/uint256 v1.3.2
+	github.com/iotaledger/wasp-hive/hiveproxy v0.0.0-00010101000000-000000000000
 	github.com/lithammer/dedent v1.1.0
 	github.com/lmittmann/tint v1.0.5
 	golang.org/x/exp v0.0.0-20231110203233-9a3e6036ecaa
@@ -77,4 +76,4 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
-replace github.com/ethereum/hive/hiveproxy => ./hiveproxy
+replace github.com/iotaledger/wasp-hive/hiveproxy => ./hiveproxy

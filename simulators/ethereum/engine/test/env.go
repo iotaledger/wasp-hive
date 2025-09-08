@@ -6,15 +6,15 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/ethereum/hive/simulators/ethereum/engine/client"
-	"github.com/ethereum/hive/simulators/ethereum/engine/client/hive_rpc"
-	"github.com/ethereum/hive/simulators/ethereum/engine/clmock"
-	"github.com/ethereum/hive/simulators/ethereum/engine/config"
-	"github.com/ethereum/hive/simulators/ethereum/engine/globals"
-	"github.com/ethereum/hive/simulators/ethereum/engine/helper"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/client"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/client/hive_rpc"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/clmock"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/config"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/globals"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/helper"
 
 	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/hive/hivesim"
+	"github.com/iotaledger/wasp-hive/hivesim"
 )
 
 // Env is the environment of a single test.

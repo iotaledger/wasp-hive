@@ -12,7 +12,7 @@ import (
 	"github.com/protolambda/ztyp/tree"
 	"github.com/protolambda/ztyp/view"
 
-	"github.com/ethereum/hive/simulators/eth2/common/config/consensus/genesis/interfaces"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/config/consensus/genesis/interfaces"
 )
 
 type GenesisStateView struct {

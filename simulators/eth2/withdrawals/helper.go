@@ -10,8 +10,8 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
-	cl "github.com/ethereum/hive/simulators/eth2/common/config/consensus"
-	"github.com/ethereum/hive/simulators/eth2/common/testnet"
+	cl "github.com/iotaledger/wasp-hive/simulators/eth2/common/config/consensus"
+	"github.com/iotaledger/wasp-hive/simulators/eth2/common/testnet"
 	beacon_client "github.com/marioevz/eth-clients/clients/beacon"
 	exec_client "github.com/marioevz/eth-clients/clients/execution"
 	"github.com/pkg/errors"

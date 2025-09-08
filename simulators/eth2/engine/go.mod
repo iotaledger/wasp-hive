@@ -1,4 +1,4 @@
-module github.com/ethereum/hive/simulators/eth2/engine
+module github.com/iotaledger/wasp-hive/simulators/eth2/engine
 
 go 1.21
 
@@ -6,8 +6,8 @@ toolchain go1.22.1
 
 require (
 	github.com/ethereum/go-ethereum v1.14.5
-	github.com/ethereum/hive v0.0.0-20240715150147-c87a99dccfce
-	github.com/ethereum/hive/simulators/eth2/common v0.0.0-20230316220410-1364352c32a6
+	github.com/iotaledger/wasp-hive v0.0.0-20240715150147-c87a99dccfce
+	github.com/iotaledger/wasp-hive/simulators/eth2/common v0.0.0-20230316220410-1364352c32a6
 	github.com/marioevz/eth-clients v0.0.0-20230925201418-d5fbddd99b76
 	github.com/protolambda/eth2api v0.0.0-20230316214135-5f8afbd6d05d
 	github.com/protolambda/zrnt v0.32.2

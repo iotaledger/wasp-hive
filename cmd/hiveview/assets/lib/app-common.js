@@ -46,7 +46,7 @@ function hiveInfoHTML(data) {
         txt += '<span>hiveview (UI) built: ' + date + '</span>';
     }
     if (data.sourceCommit) {
-        let url = 'https://github.com/ethereum/hive/commits/' + escape(data.sourceCommit);
+        let url = 'https://github.com/iotaledger/wasp-hive/commits/' + escape(data.sourceCommit);
         let link = makeLink(url, data.sourceCommit.substring(0, 8));
         txt += '<span>commit: ' + link.outerHTML + '</span>';
     }

@@ -8,15 +8,15 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/hive/hivesim"
-	"github.com/ethereum/hive/simulators/ethereum/engine/globals"
-	"github.com/ethereum/hive/simulators/ethereum/engine/helper"
-	suite_auth "github.com/ethereum/hive/simulators/ethereum/engine/suites/auth"
-	suite_cancun "github.com/ethereum/hive/simulators/ethereum/engine/suites/cancun"
-	suite_engine "github.com/ethereum/hive/simulators/ethereum/engine/suites/engine"
-	suite_excap "github.com/ethereum/hive/simulators/ethereum/engine/suites/exchange_capabilities"
-	suite_withdrawals "github.com/ethereum/hive/simulators/ethereum/engine/suites/withdrawals"
-	"github.com/ethereum/hive/simulators/ethereum/engine/test"
+	"github.com/iotaledger/wasp-hive/hivesim"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/globals"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/helper"
+	suite_auth "github.com/iotaledger/wasp-hive/simulators/ethereum/engine/suites/auth"
+	suite_cancun "github.com/iotaledger/wasp-hive/simulators/ethereum/engine/suites/cancun"
+	suite_engine "github.com/iotaledger/wasp-hive/simulators/ethereum/engine/suites/engine"
+	suite_excap "github.com/iotaledger/wasp-hive/simulators/ethereum/engine/suites/exchange_capabilities"
+	suite_withdrawals "github.com/iotaledger/wasp-hive/simulators/ethereum/engine/suites/withdrawals"
+	"github.com/iotaledger/wasp-hive/simulators/ethereum/engine/test"
 )
 
 var (
