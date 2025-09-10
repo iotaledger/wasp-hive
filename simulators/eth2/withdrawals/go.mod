@@ -6,7 +6,7 @@ toolchain go1.22.1
 
 require (
 	github.com/ethereum/go-ethereum v1.14.5
-	github.com/iotaledger/wasp-hive v0.0.0-20240715150147-c87a99dccfce
+	github.com/iotaledger/wasp-hive v0.0.0-20250908092101-0f365b10d4b7
 	github.com/iotaledger/wasp-hive/simulators/eth2/common v0.0.0-20230316220410-1364352c32a6
 	github.com/marioevz/eth-clients v0.0.0-20230925201418-d5fbddd99b76
 	github.com/marioevz/mock-builder v0.0.0-20230501225822-df434a88e375

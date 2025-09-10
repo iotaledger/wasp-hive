@@ -4,7 +4,7 @@ go 1.21
 
 toolchain go1.22.1
 
-require github.com/iotaledger/wasp-hive v0.0.0-20240715150147-c87a99dccfce
+require github.com/iotaledger/wasp-hive v0.0.0-20250908092101-0f365b10d4b7
 
 require (
 	github.com/Microsoft/go-winio v0.6.2 // indirect

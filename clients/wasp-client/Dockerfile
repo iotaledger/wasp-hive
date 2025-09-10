@@ -2,9 +2,7 @@
 FROM golang:1.24 AS evmbuilder
 
 WORKDIR /src
-RUN git clone --depth=1 https://github.com/howjmay/wasp.git waspclone
-# COPY waspclone /src/waspclone // 
-# COPY waspclone/go.mod /go.mod // 
+RUN git clone --depth=1 https://github.com/iotaledger/wasp.git waspclone
 
 WORKDIR /src/waspclone/tools/evm/evmemulator
 RUN go build -o /evmemulator
@@ -14,7 +12,7 @@ FROM ubuntu:22.04
 
 # Copy evmemulator binary from builder stage
 COPY --from=evmbuilder /evmemulator /usr/local/bin/evmemulator
-COPY --from=evmbuilder /go.mod /go.mod
+COPY --from=evmbuilder /src/waspclone/go.mod /go.mod
 
 # Genesis file
 COPY genesis.json /etc/genesis.json

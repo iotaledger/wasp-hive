@@ -6,7 +6,7 @@ toolchain go1.22.1
 
 require (
 	github.com/ethereum/go-ethereum v1.14.5
-	github.com/iotaledger/wasp-hive v0.0.0-20240715150147-c87a99dccfce
+	github.com/iotaledger/wasp-hive v0.0.0-20250908092101-0f365b10d4b7
 	github.com/nsf/jsondiff v0.0.0-20230430225905-43f6cf3098c1
 	github.com/tidwall/gjson v1.17.0
 	github.com/tidwall/sjson v1.2.5

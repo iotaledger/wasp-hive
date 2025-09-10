@@ -1139,7 +1139,7 @@ github.com/ethereum/go-ethereum v1.13.1/go.mod h1:xHQKzwkHSl0gnSjZK1mWa06XEdm968
 github.com/ethereum/go-ethereum v1.13.5-0.20231127143928-5b57727d6de2/go.mod h1:iogCB+O7R3eFmlyiEKRDqjmJbSgOsDHTjxE0PU6CYC8=
 github.com/iotaledger/wasp-hive v0.0.0-20230401205547-71595beab31d/go.mod h1:zKL2DscVzRusnGVpseAvLrXGJ3qrGHuSfOIrv4JfnRk=
 github.com/iotaledger/wasp-hive v0.0.0-20240319152821-ae224371b4e5/go.mod h1:MGwUXPGco6YS3brOf5WEILfUnnUL/XuX1224ab3D7XA=
-github.com/iotaledger/wasp-hive v0.0.0-20240610172825-2430a68c753a/go.mod h1:ghNXZW+/WQClcyiwZpbTzUCyxwql7YeMacYd44v+BJE=
+github.com/iotaledger/wasp-hive v0.0.0-20240610172825-2430a68c753a/go.mod h1:09c2zFmFrgyOTs8kkYIaHpdMHx/JbsMALKI3N0ugtQM=
 github.com/iotaledger/wasp-hive/hiveproxy v0.0.0-20230313101845-c7dfe88c8138 h1:Y74Ksk90DLCMWnpOfOEWRLxVjsf/67vY+hX5kWu9UY0=
 github.com/iotaledger/wasp-hive/hiveproxy v0.0.0-20230313101845-c7dfe88c8138/go.mod h1:1LWNU6/EYsIOXZGa2KdklD1ET77gLTeEyhq+WTZ+37o=
 github.com/iotaledger/wasp-hive/hiveproxy v0.0.0-20230919105823-37cbbe1ef86d/go.mod h1:0tWUtPhJgk9z3K41wqHV0IYY6/jJWOlfo4rI4v3Mr1E=
