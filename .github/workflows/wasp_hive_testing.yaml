@@ -1,0 +1,94 @@
+name: WASP Hive Routine Testing
+on:
+  schedule:
+    - cron: "0 0 * * 6"
+  workflow_dispatch:
+
+jobs:
+  trigger:
+    runs-on: self-hosted
+    env:
+      API_BASE_URL: ${{ secrets.RUN_API_URL }}
+      API_KEY: ${{ secrets.RUN_API_KEY }}
+      POLL_INTERVAL: 15
+      MAX_RUNNING_DISPLAY: 20
+      HEARTBEAT_SEC: 120
+    steps:
+      - name: Install tools
+        run: |
+          sudo apt-get update -y && sudo apt-get install -y jq
+
+      - name: Trigger WASP Hive Testing
+        id: trigger
+        run: |
+          set -euo pipefail
+          URL="${API_BASE_URL%/}/run"
+          RESP=$(curl -sS -X POST "$URL" \
+            -H "X-API-Key: $API_KEY" \
+            -H "Content-Type: application/json")
+          echo "Response: $RESP"
+          TASK_ID=$(echo "$RESP" | jq -r '.task_id')
+          if [ -z "$TASK_ID" ] || [ "$TASK_ID" = "null" ]; then
+            echo "No task_id in response" >&2
+            exit 1
+          fi
+          echo "task_id=$TASK_ID" >> "$GITHUB_OUTPUT"
+
+      - name: Monitoring Progress
+        run: |
+          set -euo pipefail
+          TASK_ID='${{ steps.trigger.outputs.task_id }}'
+          BASE="${API_BASE_URL%/}"
+          last_line=""
+          last_ts=$(date +%s)
+          i=0
+          while true; do
+            i=$((i+1))
+            RESP=$(curl -sS "$BASE/tasks/$TASK_ID" -H "X-API-Key: $API_KEY" || true)
+            if [ -z "$RESP" ]; then
+              echo "(warn) empty response" >&2
+              sleep "$POLL_INTERVAL"; continue
+            fi
+            STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
+            SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
+            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
+            COUNT=$(echo "$RUN_ARR" | jq 'length')
+            if [ "$COUNT" -eq 0 ]; then
+              NAMES='-'
+            else
+              NAMES=$(echo "$RUN_ARR" | jq -r "sort_by(.id) | .[0:$MAX_RUNNING_DISPLAY] | map(.name) | join(\", \")")
+              if [ "$COUNT" -gt "$MAX_RUNNING_DISPLAY" ]; then
+                EXTRA=$(( COUNT - MAX_RUNNING_DISPLAY ))
+                NAMES="$NAMES, …(+${EXTRA} more)"
+              fi
+            fi
+            LINE="running: $NAMES, $SUMMARY"
+            if [ ${#LINE} -gt 380 ]; then
+              LINE="${LINE:0:360} …[truncated]"
+            fi
+            now=$(date +%s)
+            if [ "$LINE" != "$last_line" ] || [ $(( now - last_ts )) -ge "$HEARTBEAT_SEC" ]; then
+              echo "$LINE"
+              last_line="$LINE"; last_ts=$now
+            fi
+            if [ "$STATUS" = "succeeded" ]; then
+              echo "FINAL: $LINE"; break
+            elif [ "$STATUS" = "failed" ]; then
+              EXIT_CODE=$(echo "$RESP" | jq -r '.task.exit_code // ""')
+              echo "FINAL: $LINE (failed exit_code=$EXIT_CODE)" >&2
+              exit 1
+            fi
+            sleep "$POLL_INTERVAL"
+          done
+
+      - name: Final Status
+        run: |
+          set -euo pipefail
+          TASK_ID='${{ steps.trigger.outputs.task_id }}'
+          RESP=$(curl -sS "${API_BASE_URL%/}/tasks/$TASK_ID" -H "X-API-Key: $API_KEY")
+          STATUS=$(echo "$RESP" | jq -r '.task.status')
+          if [ "$STATUS" != "succeeded" ]; then
+            echo "Unexpected final status: $STATUS" >&2
+            exit 1
+          fi
+          echo "Task $TASK_ID completed successfully"
