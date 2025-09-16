@@ -1,0 +1,98 @@
+name: WASP Hive Routine Testing
+on:
+  schedule:
+    - cron: "0 0 * * 6"
+  workflow_dispatch:
+
+jobs:
+  testing:
+    runs-on: self-hosted
+    env:
+      API_BASE_URL: ${{ secrets.RUN_API_URL }}
+      API_KEY: ${{ secrets.RUN_API_KEY }}
+      POLL_INTERVAL: 15
+      HEARTBEAT_SEC: 300
+    steps:
+      - name: Trigger WASP Hive Testing
+        id: trigger
+        run: |
+          set -euo pipefail
+          URL="${API_BASE_URL%/}/run"
+          RESP=$(curl -sS -X POST "$URL" \
+            -H "X-API-Key: $API_KEY" \
+            -H "Content-Type: application/json")
+          echo "Response: $RESP"
+          TASK_ID=$(echo "$RESP" | jq -r '.task_id')
+          if [ -z "$TASK_ID" ] || [ "$TASK_ID" = "null" ]; then
+            echo "No task_id in response" >&2
+            exit 1
+          fi
+          echo "task_id=$TASK_ID" >> "$GITHUB_OUTPUT"
+
+      - name: Monitoring Progress
+        run: |
+          set -euo pipefail
+          TASK_ID='${{ steps.trigger.outputs.task_id }}'
+          BASE="${API_BASE_URL%/}"
+          last_block=""
+          last_ts=$(date +%s)
+
+          while true; do
+            RESP=$(curl -sS "$BASE/tasks/$TASK_ID" -H "X-API-Key: $API_KEY" || true)
+            if [ -z "$RESP" ]; then
+              echo "(warn) empty response" >&2
+              sleep "$POLL_INTERVAL"; continue
+            fi
+
+            STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
+            SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
+            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
+            COUNT=$(echo "$RUN_ARR" | jq 'length')
+
+            if [ "$COUNT" -eq 0 ]; then
+              LIST="- (none)"
+            else
+              LIST=$(echo "$RUN_ARR" | jq -r \
+                "sort_by(.name) | .[] | \"- \(.name)\"")
+            fi
+
+            {
+              echo "running:"
+              if [ -n "$LIST" ]; then echo "$LIST"; fi
+              echo "summary: $SUMMARY"
+            } > /tmp/prog_block.txt
+
+            now=$(date +%s)
+            cur_block=$(cat /tmp/prog_block.txt)
+
+            if [ "$cur_block" != "$last_block" ] || [ $(( now - last_ts )) -ge "$HEARTBEAT_SEC" ]; then
+              echo "$cur_block"
+              last_block="$cur_block"
+              last_ts=$now
+            fi
+
+            if [ "$STATUS" = "succeeded" ]; then
+              echo "FINAL:"
+              echo "$cur_block"
+              break
+            elif [ "$STATUS" = "failed" ]; then
+              EXIT_CODE=$(echo "$RESP" | jq -r '.task.exit_code // ""')
+              echo "FINAL (failed exit_code=$EXIT_CODE):"
+              echo "$cur_block" >&2
+              exit 1
+            fi
+
+            sleep "$POLL_INTERVAL"
+          done
+
+      - name: Final Status
+        run: |
+          set -euo pipefail
+          TASK_ID='${{ steps.trigger.outputs.task_id }}'
+          RESP=$(curl -sS "${API_BASE_URL%/}/tasks/$TASK_ID" -H "X-API-Key: $API_KEY")
+          STATUS=$(echo "$RESP" | jq -r '.task.status')
+          if [ "$STATUS" != "succeeded" ]; then
+            echo "Unexpected final status: $STATUS" >&2
+            exit 1
+          fi
+          echo "Testing completed successfully"
