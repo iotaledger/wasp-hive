@@ -11,7 +11,7 @@ jobs:
     env:
       API_BASE_URL: ${{ secrets.RUN_API_URL }}
       API_KEY: ${{ secrets.RUN_API_KEY }}
-      POLL_INTERVAL: 15
+      POLL_INTERVAL: 60
       HEARTBEAT_SEC: 300
       CHUNK_SEC: 19800
 
@@ -64,19 +64,11 @@ jobs:
 
             STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
             SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
-            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
-            COUNT=$(echo "$RUN_ARR" | jq 'length')
-
-            if [[ "$COUNT" -eq 0 ]]; then
-              LIST="- (none)"
-            else
-              LIST=$(echo "$RUN_ARR" | jq -r 'sort_by(.name) | .[] | "- \(.name)"')
-            fi
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
 
             {
-              echo "running:"
-              [[ -n "$LIST" ]] && echo "$LIST"
-              echo "summary: $SUMMARY"
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
             } > /tmp/prog_block.txt
 
             cur_block=$(cat /tmp/prog_block.txt)
@@ -133,19 +125,11 @@ jobs:
 
             STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
             SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
-            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
-            COUNT=$(echo "$RUN_ARR" | jq 'length')
-
-            if [[ "$COUNT" -eq 0 ]]; then
-              LIST="- (none)"
-            else
-              LIST=$(echo "$RUN_ARR" | jq -r 'sort_by(.name) | .[] | "- \(.name)"')
-            fi
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
 
             {
-              echo "running:"
-              [[ -n "$LIST" ]] && echo "$LIST"
-              echo "summary: $SUMMARY"
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
             } > /tmp/prog_block.txt
 
             cur_block=$(cat /tmp/prog_block.txt)
@@ -202,19 +186,11 @@ jobs:
 
             STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
             SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
-            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
-            COUNT=$(echo "$RUN_ARR" | jq 'length')
-
-            if [[ "$COUNT" -eq 0 ]]; then
-              LIST="- (none)"
-            else
-              LIST=$(echo "$RUN_ARR" | jq -r 'sort_by(.name) | .[] | "- \(.name)"')
-            fi
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
 
             {
-              echo "running:"
-              [[ -n "$LIST" ]] && echo "$LIST"
-              echo "summary: $SUMMARY"
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
             } > /tmp/prog_block.txt
 
             cur_block=$(cat /tmp/prog_block.txt)
@@ -271,19 +247,11 @@ jobs:
 
             STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
             SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
-            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
-            COUNT=$(echo "$RUN_ARR" | jq 'length')
-
-            if [[ "$COUNT" -eq 0 ]]; then
-              LIST="- (none)"
-            else
-              LIST=$(echo "$RUN_ARR" | jq -r 'sort_by(.name) | .[] | "- \(.name)"')
-            fi
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
 
             {
-              echo "running:"
-              [[ -n "$LIST" ]] && echo "$LIST"
-              echo "summary: $SUMMARY"
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
             } > /tmp/prog_block.txt
 
             cur_block=$(cat /tmp/prog_block.txt)
@@ -340,19 +308,11 @@ jobs:
 
             STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
             SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
-            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
-            COUNT=$(echo "$RUN_ARR" | jq 'length')
-
-            if [[ "$COUNT" -eq 0 ]]; then
-              LIST="- (none)"
-            else
-              LIST=$(echo "$RUN_ARR" | jq -r 'sort_by(.name) | .[] | "- \(.name)"')
-            fi
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
 
             {
-              echo "running:"
-              [[ -n "$LIST" ]] && echo "$LIST"
-              echo "summary: $SUMMARY"
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
             } > /tmp/prog_block.txt
 
             cur_block=$(cat /tmp/prog_block.txt)
@@ -409,19 +369,11 @@ jobs:
 
             STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
             SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
-            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
-            COUNT=$(echo "$RUN_ARR" | jq 'length')
-
-            if [[ "$COUNT" -eq 0 ]]; then
-              LIST="- (none)"
-            else
-              LIST=$(echo "$RUN_ARR" | jq -r 'sort_by(.name) | .[] | "- \(.name)"')
-            fi
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
 
             {
-              echo "running:"
-              [[ -n "$LIST" ]] && echo "$LIST"
-              echo "summary: $SUMMARY"
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
             } > /tmp/prog_block.txt
 
             cur_block=$(cat /tmp/prog_block.txt)
@@ -478,19 +430,11 @@ jobs:
 
             STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
             SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
-            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
-            COUNT=$(echo "$RUN_ARR" | jq 'length')
-
-            if [[ "$COUNT" -eq 0 ]]; then
-              LIST="- (none)"
-            else
-              LIST=$(echo "$RUN_ARR" | jq -r 'sort_by(.name) | .[] | "- \(.name)"')
-            fi
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
 
             {
-              echo "running:"
-              [[ -n "$LIST" ]] && echo "$LIST"
-              echo "summary: $SUMMARY"
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
             } > /tmp/prog_block.txt
 
             cur_block=$(cat /tmp/prog_block.txt)
@@ -547,19 +491,11 @@ jobs:
 
             STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
             SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
-            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
-            COUNT=$(echo "$RUN_ARR" | jq 'length')
-
-            if [[ "$COUNT" -eq 0 ]]; then
-              LIST="- (none)"
-            else
-              LIST=$(echo "$RUN_ARR" | jq -r 'sort_by(.name) | .[] | "- \(.name)"')
-            fi
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
 
             {
-              echo "running:"
-              [[ -n "$LIST" ]] && echo "$LIST"
-              echo "summary: $SUMMARY"
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
             } > /tmp/prog_block.txt
 
             cur_block=$(cat /tmp/prog_block.txt)
@@ -616,19 +552,11 @@ jobs:
 
             STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
             SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
-            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
-            COUNT=$(echo "$RUN_ARR" | jq 'length')
-
-            if [[ "$COUNT" -eq 0 ]]; then
-              LIST="- (none)"
-            else
-              LIST=$(echo "$RUN_ARR" | jq -r 'sort_by(.name) | .[] | "- \(.name)"')
-            fi
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
 
             {
-              echo "running:"
-              [[ -n "$LIST" ]] && echo "$LIST"
-              echo "summary: $SUMMARY"
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
             } > /tmp/prog_block.txt
 
             cur_block=$(cat /tmp/prog_block.txt)
@@ -685,19 +613,11 @@ jobs:
 
             STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
             SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
-            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
-            COUNT=$(echo "$RUN_ARR" | jq 'length')
-
-            if [[ "$COUNT" -eq 0 ]]; then
-              LIST="- (none)"
-            else
-              LIST=$(echo "$RUN_ARR" | jq -r 'sort_by(.name) | .[] | "- \(.name)"')
-            fi
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
 
             {
-              echo "running:"
-              [[ -n "$LIST" ]] && echo "$LIST"
-              echo "summary: $SUMMARY"
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
             } > /tmp/prog_block.txt
 
             cur_block=$(cat /tmp/prog_block.txt)
@@ -754,19 +674,11 @@ jobs:
 
             STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
             SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
-            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
-            COUNT=$(echo "$RUN_ARR" | jq 'length')
-
-            if [[ "$COUNT" -eq 0 ]]; then
-              LIST="- (none)"
-            else
-              LIST=$(echo "$RUN_ARR" | jq -r 'sort_by(.name) | .[] | "- \(.name)"')
-            fi
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
 
             {
-              echo "running:"
-              [[ -n "$LIST" ]] && echo "$LIST"
-              echo "summary: $SUMMARY"
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
             } > /tmp/prog_block.txt
 
             cur_block=$(cat /tmp/prog_block.txt)
@@ -823,19 +735,11 @@ jobs:
 
             STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
             SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
-            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
-            COUNT=$(echo "$RUN_ARR" | jq 'length')
-
-            if [[ "$COUNT" -eq 0 ]]; then
-              LIST="- (none)"
-            else
-              LIST=$(echo "$RUN_ARR" | jq -r 'sort_by(.name) | .[] | "- \(.name)"')
-            fi
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
 
             {
-              echo "running:"
-              [[ -n "$LIST" ]] && echo "$LIST"
-              echo "summary: $SUMMARY"
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
             } > /tmp/prog_block.txt
 
             cur_block=$(cat /tmp/prog_block.txt)
@@ -892,19 +796,11 @@ jobs:
 
             STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
             SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
-            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
-            COUNT=$(echo "$RUN_ARR" | jq 'length')
-
-            if [[ "$COUNT" -eq 0 ]]; then
-              LIST="- (none)"
-            else
-              LIST=$(echo "$RUN_ARR" | jq -r 'sort_by(.name) | .[] | "- \(.name)"')
-            fi
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
 
             {
-              echo "running:"
-              [[ -n "$LIST" ]] && echo "$LIST"
-              echo "summary: $SUMMARY"
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
             } > /tmp/prog_block.txt
 
             cur_block=$(cat /tmp/prog_block.txt)
@@ -961,19 +857,11 @@ jobs:
 
             STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
             SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
-            RUN_ARR=$(echo "$RESP" | jq '.progress.running // []')
-            COUNT=$(echo "$RUN_ARR" | jq 'length')
-
-            if [[ "$COUNT" -eq 0 ]]; then
-              LIST="- (none)"
-            else
-              LIST=$(echo "$RUN_ARR" | jq -r 'sort_by(.name) | .[] | "- \(.name)"')
-            fi
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
 
             {
-              echo "running:"
-              [[ -n "$LIST" ]] && echo "$LIST"
-              echo "summary: $SUMMARY"
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
             } > /tmp/prog_block.txt
 
             cur_block=$(cat /tmp/prog_block.txt)
