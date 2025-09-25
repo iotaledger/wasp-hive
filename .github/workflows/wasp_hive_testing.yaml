@@ -33,7 +33,7 @@ jobs:
           fi
           echo "task_id=$TASK_ID" >> "$GITHUB_OUTPUT"
 
-      - name: Monitoring (chunk 1)
+      - name: Monitoring (0 - 6h)
         id: monitor1
         shell: bash
         timeout-minutes: 330
@@ -94,7 +94,7 @@ jobs:
             sleep "$POLL_INTERVAL"
           done
 
-      - name: Monitoring (chunk 2)
+      - name: Monitoring (6 - 11h)
         id: monitor2
         shell: bash
         timeout-minutes: 330
@@ -155,7 +155,7 @@ jobs:
             sleep "$POLL_INTERVAL"
           done
 
-      - name: Monitoring (chunk 3)
+      - name: Monitoring (11 - 17h)
         id: monitor3
         shell: bash
         timeout-minutes: 330
@@ -216,7 +216,7 @@ jobs:
             sleep "$POLL_INTERVAL"
           done
 
-      - name: Monitoring (chunk 4)
+      - name: Monitoring (17 - 22h)
         id: monitor4
         shell: bash
         timeout-minutes: 330
@@ -277,7 +277,7 @@ jobs:
             sleep "$POLL_INTERVAL"
           done
 
-      - name: Monitoring (chunk 5)
+      - name: Monitoring (22h - 1d 4h)
         id: monitor5
         shell: bash
         timeout-minutes: 330
@@ -338,7 +338,7 @@ jobs:
             sleep "$POLL_INTERVAL"
           done
 
-      - name: Monitoring (chunk 6)
+      - name: Monitoring (1d 4h - 1d 9h)
         id: monitor6
         shell: bash
         timeout-minutes: 330
@@ -399,7 +399,7 @@ jobs:
             sleep "$POLL_INTERVAL"
           done
 
-      - name: Monitoring (chunk 7)
+      - name: Monitoring (1d 9h - 1d 15h)
         id: monitor7
         shell: bash
         timeout-minutes: 330
@@ -460,7 +460,7 @@ jobs:
             sleep "$POLL_INTERVAL"
           done
 
-      - name: Monitoring (chunk 8)
+      - name: Monitoring (1d 15h - 1d 20h)
         id: monitor8
         shell: bash
         timeout-minutes: 330
@@ -521,7 +521,7 @@ jobs:
             sleep "$POLL_INTERVAL"
           done
 
-      - name: Monitoring (chunk 9)
+      - name: Monitoring (1d 20h - 2d 2h)
         id: monitor9
         shell: bash
         timeout-minutes: 330
@@ -582,7 +582,7 @@ jobs:
             sleep "$POLL_INTERVAL"
           done
 
-      - name: Monitoring (chunk 10)
+      - name: Monitoring (2d 2h - 2d 7h)
         id: monitor10
         shell: bash
         timeout-minutes: 330
@@ -643,7 +643,7 @@ jobs:
             sleep "$POLL_INTERVAL"
           done
 
-      - name: Monitoring (chunk 11)
+      - name: Monitoring (2d 7h - 2d 13h)
         id: monitor11
         shell: bash
         timeout-minutes: 330
@@ -704,7 +704,7 @@ jobs:
             sleep "$POLL_INTERVAL"
           done
 
-      - name: Monitoring (chunk 12)
+      - name: Monitoring (2d 13h - 2d 18h)
         id: monitor12
         shell: bash
         timeout-minutes: 330
@@ -765,7 +765,7 @@ jobs:
             sleep "$POLL_INTERVAL"
           done
 
-      - name: Monitoring (chunk 13)
+      - name: Monitoring (2d 18h - 3d 0h)
         id: monitor13
         shell: bash
         timeout-minutes: 330
@@ -826,8 +826,496 @@ jobs:
             sleep "$POLL_INTERVAL"
           done
 
-      - name: Monitoring (chunk 14)
+      - name: Monitoring (3d 0h - 3d 5h)
         id: monitor14
+        shell: bash
+        timeout-minutes: 330
+        continue-on-error: true
+        if: env.DONE != '1'
+        run: |
+          set -euo pipefail
+          TASK_ID='${{ steps.trigger.outputs.task_id }}'
+          BASE="${API_BASE_URL%/}"
+
+          start=$(date +%s)
+          last_block=""
+          last_ts=$start
+
+          while true; do
+            now=$(date +%s)
+            if (( now - start >= CHUNK_SEC )); then
+              echo "(info) chunk time reached $(($CHUNK_SEC/3600))h, continue in next step..."
+              exit 0
+            fi
+
+            RESP=$(curl -sS "$BASE/tasks/$TASK_ID" -H "X-API-Key: $API_KEY" || true)
+            if [[ -z "$RESP" ]]; then
+              echo "(warn) empty response" >&2
+              sleep "$POLL_INTERVAL"
+              continue
+            fi
+
+            STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
+            SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
+
+            {
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
+            } > /tmp/prog_block.txt
+
+            cur_block=$(cat /tmp/prog_block.txt)
+            if [[ "$cur_block" != "$last_block" || $(( now - last_ts )) -ge "$HEARTBEAT_SEC" ]]; then
+              echo "$cur_block"
+              last_block="$cur_block"
+              last_ts=$now
+            fi
+
+            if [[ "$STATUS" == "succeeded" ]]; then
+              echo "FINAL:"
+              echo "$cur_block"
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 0
+            elif [[ "$STATUS" == "failed" ]]; then
+              EXIT_CODE=$(echo "$RESP" | jq -r '.task.exit_code // ""')
+              echo "FINAL (failed exit_code=$EXIT_CODE):" >&2
+              echo "$cur_block" >&2
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 1
+            fi
+
+            sleep "$POLL_INTERVAL"
+          done
+
+      - name: Monitoring (3d 5h - 3d 11h)
+        id: monitor15
+        shell: bash
+        timeout-minutes: 330
+        continue-on-error: true
+        if: env.DONE != '1'
+        run: |
+          set -euo pipefail
+          TASK_ID='${{ steps.trigger.outputs.task_id }}'
+          BASE="${API_BASE_URL%/}"
+
+          start=$(date +%s)
+          last_block=""
+          last_ts=$start
+
+          while true; do
+            now=$(date +%s)
+            if (( now - start >= CHUNK_SEC )); then
+              echo "(info) chunk time reached $(($CHUNK_SEC/3600))h, continue in next step..."
+              exit 0
+            fi
+
+            RESP=$(curl -sS "$BASE/tasks/$TASK_ID" -H "X-API-Key: $API_KEY" || true)
+            if [[ -z "$RESP" ]]; then
+              echo "(warn) empty response" >&2
+              sleep "$POLL_INTERVAL"
+              continue
+            fi
+
+            STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
+            SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
+
+            {
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
+            } > /tmp/prog_block.txt
+
+            cur_block=$(cat /tmp/prog_block.txt)
+            if [[ "$cur_block" != "$last_block" || $(( now - last_ts )) -ge "$HEARTBEAT_SEC" ]]; then
+              echo "$cur_block"
+              last_block="$cur_block"
+              last_ts=$now
+            fi
+
+            if [[ "$STATUS" == "succeeded" ]]; then
+              echo "FINAL:"
+              echo "$cur_block"
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 0
+            elif [[ "$STATUS" == "failed" ]]; then
+              EXIT_CODE=$(echo "$RESP" | jq -r '.task.exit_code // ""')
+              echo "FINAL (failed exit_code=$EXIT_CODE):" >&2
+              echo "$cur_block" >&2
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 1
+            fi
+
+            sleep "$POLL_INTERVAL"
+          done
+
+      - name: Monitoring (3d 11h - 3d 16h)
+        id: monitor16
+        shell: bash
+        timeout-minutes: 330
+        continue-on-error: true
+        if: env.DONE != '1'
+        run: |
+          set -euo pipefail
+          TASK_ID='${{ steps.trigger.outputs.task_id }}'
+          BASE="${API_BASE_URL%/}"
+
+          start=$(date +%s)
+          last_block=""
+          last_ts=$start
+
+          while true; do
+            now=$(date +%s)
+            if (( now - start >= CHUNK_SEC )); then
+              echo "(info) chunk time reached $(($CHUNK_SEC/3600))h, continue in next step..."
+              exit 0
+            fi
+
+            RESP=$(curl -sS "$BASE/tasks/$TASK_ID" -H "X-API-Key: $API_KEY" || true)
+            if [[ -z "$RESP" ]]; then
+              echo "(warn) empty response" >&2
+              sleep "$POLL_INTERVAL"
+              continue
+            fi
+
+            STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
+            SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
+
+            {
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
+            } > /tmp/prog_block.txt
+
+            cur_block=$(cat /tmp/prog_block.txt)
+            if [[ "$cur_block" != "$last_block" || $(( now - last_ts )) -ge "$HEARTBEAT_SEC" ]]; then
+              echo "$cur_block"
+              last_block="$cur_block"
+              last_ts=$now
+            fi
+
+            if [[ "$STATUS" == "succeeded" ]]; then
+              echo "FINAL:"
+              echo "$cur_block"
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 0
+            elif [[ "$STATUS" == "failed" ]]; then
+              EXIT_CODE=$(echo "$RESP" | jq -r '.task.exit_code // ""')
+              echo "FINAL (failed exit_code=$EXIT_CODE):" >&2
+              echo "$cur_block" >&2
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 1
+            fi
+
+            sleep "$POLL_INTERVAL"
+          done
+
+      - name: Monitoring (3d 16h - 3d 22h)
+        id: monitor17
+        shell: bash
+        timeout-minutes: 330
+        continue-on-error: true
+        if: env.DONE != '1'
+        run: |
+          set -euo pipefail
+          TASK_ID='${{ steps.trigger.outputs.task_id }}'
+          BASE="${API_BASE_URL%/}"
+
+          start=$(date +%s)
+          last_block=""
+          last_ts=$start
+
+          while true; do
+            now=$(date +%s)
+            if (( now - start >= CHUNK_SEC )); then
+              echo "(info) chunk time reached $(($CHUNK_SEC/3600))h, continue in next step..."
+              exit 0
+            fi
+
+            RESP=$(curl -sS "$BASE/tasks/$TASK_ID" -H "X-API-Key: $API_KEY" || true)
+            if [[ -z "$RESP" ]]; then
+              echo "(warn) empty response" >&2
+              sleep "$POLL_INTERVAL"
+              continue
+            fi
+
+            STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
+            SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
+
+            {
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
+            } > /tmp/prog_block.txt
+
+            cur_block=$(cat /tmp/prog_block.txt)
+            if [[ "$cur_block" != "$last_block" || $(( now - last_ts )) -ge "$HEARTBEAT_SEC" ]]; then
+              echo "$cur_block"
+              last_block="$cur_block"
+              last_ts=$now
+            fi
+
+            if [[ "$STATUS" == "succeeded" ]]; then
+              echo "FINAL:"
+              echo "$cur_block"
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 0
+            elif [[ "$STATUS" == "failed" ]]; then
+              EXIT_CODE=$(echo "$RESP" | jq -r '.task.exit_code // ""')
+              echo "FINAL (failed exit_code=$EXIT_CODE):" >&2
+              echo "$cur_block" >&2
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 1
+            fi
+
+            sleep "$POLL_INTERVAL"
+          done
+
+      - name: Monitoring (3d 22h - 4d 3h)
+        id: monitor18
+        shell: bash
+        timeout-minutes: 330
+        continue-on-error: true
+        if: env.DONE != '1'
+        run: |
+          set -euo pipefail
+          TASK_ID='${{ steps.trigger.outputs.task_id }}'
+          BASE="${API_BASE_URL%/}"
+
+          start=$(date +%s)
+          last_block=""
+          last_ts=$start
+
+          while true; do
+            now=$(date +%s)
+            if (( now - start >= CHUNK_SEC )); then
+              echo "(info) chunk time reached $(($CHUNK_SEC/3600))h, continue in next step..."
+              exit 0
+            fi
+
+            RESP=$(curl -sS "$BASE/tasks/$TASK_ID" -H "X-API-Key: $API_KEY" || true)
+            if [[ -z "$RESP" ]]; then
+              echo "(warn) empty response" >&2
+              sleep "$POLL_INTERVAL"
+              continue
+            fi
+
+            STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
+            SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
+
+            {
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
+            } > /tmp/prog_block.txt
+
+            cur_block=$(cat /tmp/prog_block.txt)
+            if [[ "$cur_block" != "$last_block" || $(( now - last_ts )) -ge "$HEARTBEAT_SEC" ]]; then
+              echo "$cur_block"
+              last_block="$cur_block"
+              last_ts=$now
+            fi
+
+            if [[ "$STATUS" == "succeeded" ]]; then
+              echo "FINAL:"
+              echo "$cur_block"
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 0
+            elif [[ "$STATUS" == "failed" ]]; then
+              EXIT_CODE=$(echo "$RESP" | jq -r '.task.exit_code // ""')
+              echo "FINAL (failed exit_code=$EXIT_CODE):" >&2
+              echo "$cur_block" >&2
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 1
+            fi
+
+            sleep "$POLL_INTERVAL"
+          done
+
+      - name: Monitoring (4d 3h - 4d 9h)
+        id: monitor19
+        shell: bash
+        timeout-minutes: 330
+        continue-on-error: true
+        if: env.DONE != '1'
+        run: |
+          set -euo pipefail
+          TASK_ID='${{ steps.trigger.outputs.task_id }}'
+          BASE="${API_BASE_URL%/}"
+
+          start=$(date +%s)
+          last_block=""
+          last_ts=$start
+
+          while true; do
+            now=$(date +%s)
+            if (( now - start >= CHUNK_SEC )); then
+              echo "(info) chunk time reached $(($CHUNK_SEC/3600))h, continue in next step..."
+              exit 0
+            fi
+
+            RESP=$(curl -sS "$BASE/tasks/$TASK_ID" -H "X-API-Key: $API_KEY" || true)
+            if [[ -z "$RESP" ]]; then
+              echo "(warn) empty response" >&2
+              sleep "$POLL_INTERVAL"
+              continue
+            fi
+
+            STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
+            SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
+
+            {
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
+            } > /tmp/prog_block.txt
+
+            cur_block=$(cat /tmp/prog_block.txt)
+            if [[ "$cur_block" != "$last_block" || $(( now - last_ts )) -ge "$HEARTBEAT_SEC" ]]; then
+              echo "$cur_block"
+              last_block="$cur_block"
+              last_ts=$now
+            fi
+
+            if [[ "$STATUS" == "succeeded" ]]; then
+              echo "FINAL:"
+              echo "$cur_block"
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 0
+            elif [[ "$STATUS" == "failed" ]]; then
+              EXIT_CODE=$(echo "$RESP" | jq -r '.task.exit_code // ""')
+              echo "FINAL (failed exit_code=$EXIT_CODE):" >&2
+              echo "$cur_block" >&2
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 1
+            fi
+
+            sleep "$POLL_INTERVAL"
+          done
+
+      - name: Monitoring (4d 9h - 4d 14h)
+        id: monitor20
+        shell: bash
+        timeout-minutes: 330
+        continue-on-error: true
+        if: env.DONE != '1'
+        run: |
+          set -euo pipefail
+          TASK_ID='${{ steps.trigger.outputs.task_id }}'
+          BASE="${API_BASE_URL%/}"
+
+          start=$(date +%s)
+          last_block=""
+          last_ts=$start
+
+          while true; do
+            now=$(date +%s)
+            if (( now - start >= CHUNK_SEC )); then
+              echo "(info) chunk time reached $(($CHUNK_SEC/3600))h, continue in next step..."
+              exit 0
+            fi
+
+            RESP=$(curl -sS "$BASE/tasks/$TASK_ID" -H "X-API-Key: $API_KEY" || true)
+            if [[ -z "$RESP" ]]; then
+              echo "(warn) empty response" >&2
+              sleep "$POLL_INTERVAL"
+              continue
+            fi
+
+            STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
+            SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
+
+            {
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
+            } > /tmp/prog_block.txt
+
+            cur_block=$(cat /tmp/prog_block.txt)
+            if [[ "$cur_block" != "$last_block" || $(( now - last_ts )) -ge "$HEARTBEAT_SEC" ]]; then
+              echo "$cur_block"
+              last_block="$cur_block"
+              last_ts=$now
+            fi
+
+            if [[ "$STATUS" == "succeeded" ]]; then
+              echo "FINAL:"
+              echo "$cur_block"
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 0
+            elif [[ "$STATUS" == "failed" ]]; then
+              EXIT_CODE=$(echo "$RESP" | jq -r '.task.exit_code // ""')
+              echo "FINAL (failed exit_code=$EXIT_CODE):" >&2
+              echo "$cur_block" >&2
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 1
+            fi
+
+            sleep "$POLL_INTERVAL"
+          done
+
+      - name: Monitoring (4d 14h - 4d 20h)
+        id: monitor21
+        shell: bash
+        timeout-minutes: 330
+        continue-on-error: true
+        if: env.DONE != '1'
+        run: |
+          set -euo pipefail
+          TASK_ID='${{ steps.trigger.outputs.task_id }}'
+          BASE="${API_BASE_URL%/}"
+
+          start=$(date +%s)
+          last_block=""
+          last_ts=$start
+
+          while true; do
+            now=$(date +%s)
+            if (( now - start >= CHUNK_SEC )); then
+              echo "(info) chunk time reached $(($CHUNK_SEC/3600))h, continue in next step..."
+              exit 0
+            fi
+
+            RESP=$(curl -sS "$BASE/tasks/$TASK_ID" -H "X-API-Key: $API_KEY" || true)
+            if [[ -z "$RESP" ]]; then
+              echo "(warn) empty response" >&2
+              sleep "$POLL_INTERVAL"
+              continue
+            fi
+
+            STATUS=$(echo "$RESP" | jq -r '.task.status // "unknown"')
+            SUMMARY=$(echo "$RESP" | jq -r '.progress.summary_line // "waiting for progress"')
+            LAST_EVENT=$(echo "$RESP" | jq -r '.progress.last_event // "no event"')
+
+            {
+              echo "Progress: $SUMMARY"
+              echo "Latest Event: $LAST_EVENT"
+            } > /tmp/prog_block.txt
+
+            cur_block=$(cat /tmp/prog_block.txt)
+            if [[ "$cur_block" != "$last_block" || $(( now - last_ts )) -ge "$HEARTBEAT_SEC" ]]; then
+              echo "$cur_block"
+              last_block="$cur_block"
+              last_ts=$now
+            fi
+
+            if [[ "$STATUS" == "succeeded" ]]; then
+              echo "FINAL:"
+              echo "$cur_block"
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 0
+            elif [[ "$STATUS" == "failed" ]]; then
+              EXIT_CODE=$(echo "$RESP" | jq -r '.task.exit_code // ""')
+              echo "FINAL (failed exit_code=$EXIT_CODE):" >&2
+              echo "$cur_block" >&2
+              echo "DONE=1" >> "$GITHUB_ENV"
+              exit 1
+            fi
+
+            sleep "$POLL_INTERVAL"
+          done
+
+      - name: Monitoring (4d 20h - 5d 1h)
+        id: monitor22
         shell: bash
         timeout-minutes: 330
         continue-on-error: true
